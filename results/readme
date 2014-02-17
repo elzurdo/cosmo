@@ -1,0 +1,150 @@
+=========================================================
+PURPOSE
+
+The purpose of this package 
+is to provide the 
+full 2d joint-likelihood posterior 
+of cz/H/r_s and Da/r_s at z=0.57 from 
+analysis of the anisotropic clustering 
+of the BOSS DR9 CMASS galaxies. 
+As these likelihoods are model independent, 
+they are useful for combining with other data sets 
+to constrain cosmology. 
+We provide all results both pre- and post-reconstruction 
+of the baryonic acoustic feature. 
+
+*We recommend using the full likelihood profile 
+for analysis, and 
+not a Gaussian approximation, 
+as the former is not Gaussian at the 
+2sigma level*
+
+As described below, the user can either 
+use the likelihood function directly, 
+or through a short easy-to-use 
+python module provided. 
+
+Alternatively, we provide the correlation functions, 
+covariance matrices and their inverse used in this analysis. 
+=========================================================
+DISCLAIMER
+
+These results are pending peer review through the MNRAS
+=========================================================
+REFERENCE & CREDIT
+
+Reference for details and credit of usage should be to: Kazin, Sanchez et al. (2013; submitted)
+
+There is also an option to use the BOSS consensus result (see below), 
+in this case credit is to: Anderson et al. (2013; submitted)
+
+Created by: Eyal Kazin, Swinburne University of Technology; March 15th 2013; eyalkazin@gmail.com
+	    Antonio Cuesta (Yale) and Xiaoying Xu (Carnegie Mellon University) assisted in producing the consensus product.
+=========================================================
+CONTENT
+
+This package contains:
+(1) Likelihood profiles of cz/H/r_s and Da/r_s as well as example code to call the files
+(2) Correlation function (clustering wedges; multipoles*)
+(3) Covariance matrices and their inverse
+
+* multipoles results are as used in Kazin, Sanchez et al. (2013), 
+not Anderson et al. (2013). The latter can be found at:
+http://www.sdss3.org/science/boss_publications.php
+
+*The clustering wedges were used in both studies.
+The pre-reconstruction clustering wedges are also similar to those used in Sanchez, Kazin et al. (2013), 
+although at a slightly narrower range of analysis. 
+=========================================================
+NOTATION
+
+z =  the redshift; for BOSS CMASS DR9 use z=0.57
+H =  Hubble expansion at z;  H=da/dt/a where a=1/(1+z) is the expansion factor
+Da = the proper (physical) angular diameter distance to redshift z
+r_s= the comoving sound horizon at the end of the drag era z_d. 
+c  = the speed of light  299792.458 km/s
+Note that cz/H/r_s and Da/r_s are unitless
+=========================================================
+LIKELIHOOD PROFILES
+
+The 2D likelihood 
+profiles of cz/H/r_s and Da/r_s 
+are in the folder ``CMASSDR9_KazinSanchez_hrsdars_likelihood/likelihood_functions/":
+
+The pre-reconstruction result is:
+HzDaprofile_rpt_wedges_preRec_T0.15.txt
+
+The post-reconstruction is:
+HzDaprofile_rpt_wedges_postRec_T0.15.txt 
+
+Both of these are produced by running MCMC chains using the RPT-based template, 
+and assuming a flat prior of |epsilon|<0.15. 
+
+We provide a third result:
+HzDaprofile_dewiggled_consensus_postRec_T0.15.txt
+
+This last consensus profile is produced by combining post-reconstruction results from 
+analysis of clustering wedges and multipoles using the dewiggled template, 
+as described in Anderson et al. (2013; submitted). 
+
+For example usage see "EXAMPLE USAGE" below.
+=========================================================
+CORRELATION FUNCTIONS AND COVARIANCES
+
+Can be found in the ``CMASSDR9_KazinSanchez_xi/" folder. 
+We yield the option to use the clustering wedges or the multipoles. 
+We yield the option to use results before and after reconstruction. 
+In each sub folder are four files, where the one that ends with .cove 
+includes the covariance matrix and its inverse.
+The files ending with .xi yields the correlation functions and their rms. 
+See headers of the files for details.
+
+
+* multipoles results are as used in Kazin, Sanchez et al. (2013), 
+not Anderson et al. (2013). The latter can be found at:
+http://www.sdss3.org/science/boss_publications.php
+
+*The clustering wedges were used in both studies. 
+The pre-reconstruction clustering wedges are also similar to those used in Sanchez, Kazin et al. (2013), 
+although at a slightly narrower range of analysis. 
+=========================================================
+EXAMPLE USAGE
+
+We provide python code for usage of the Likelihood profiles.
+The main file to use is 
+hrsdars_likelihood.py. 
+See its header for full details.
+~~~~~~~~~~~~~~~~~~~~~
+Python Packages used:
+Essential:
+numpy
+scipy.interpolate
+sys
+os
+
+Recommended:
+matplotlib.pyplot
+pickle
+~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~ IMPORTANT! ~~~~~~~~~~~~~~~~~~~~~~~
+Once the modules are imported, 
+the only setup required is 
+modifying in hrsdars_likelihood.py the 
+dir_main Argument
+to the directory of hrsdars_likelihood.py.
+---------------------
+QUICK USAGE
+
+at the command line do:
+~~~~~~~~~~~~~~~~~~~~~~~
+python example_usage.py
+~~~~~~~~~~~~~~~~~~~~~~~
+For modifications and understanding how the 
+open up example_usage.py 
+to see how to toggle reconstruction 
+from "post" (with reconstruction)
+to "pre"    (without reconstruction)
+Also vary consensus from True to False for usage of the post-reconstruction consensus result.
+
+The output should look something like the plotted in 
+the file example_profile.tiff.
